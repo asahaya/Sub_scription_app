@@ -1,10 +1,17 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:sub_scription_app/add_page.dart';
-import 'package:sub_scription_app/login_page.dart';
-
+import 'package:sub_scription_app/ui/auth/login_page.dart';
+import 'package:sub_scription_app/ui/mana/add_page.dart';
+import 'package:sub_scription_app/firebase_options.dart';
+// 4/16
 import 'common.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
@@ -19,7 +26,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const FirstPage(),
+      home: StreamBuilder<User?>(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const SizedBox();
+          }
+          if (snapshot.hasData) {
+            // ログインしていたら、FirstPageへ
+            return const FirstPage();
+          }
+          // ログインしていなければ、LoginPageへ
+          return const LoginPage();
+        },
+      ),
     );
   }
 }
@@ -46,12 +66,11 @@ class _FirstPageState extends State<FirstPage> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     Expanded(
-                      flex: 1,
-                      child: InkWell(
-                       child: Icon(Icons.arrow_left),
-                       onTap: (){},
-                      )
-                    ),
+                        flex: 1,
+                        child: InkWell(
+                          child: Icon(Icons.arrow_left),
+                          onTap: () {},
+                        )),
                     Expanded(
                       flex: 8,
                       child: Center(
@@ -99,12 +118,11 @@ class _FirstPageState extends State<FirstPage> {
                       width: 10,
                     ),
                     Expanded(
-                      flex: 1,
-                      child: InkWell(
-                       child: Icon(Icons.arrow_right),
-                       onTap: (){},
-                      )
-                    ),
+                        flex: 1,
+                        child: InkWell(
+                          child: Icon(Icons.arrow_right),
+                          onTap: () {},
+                        )),
                   ],
                 ),
               ),

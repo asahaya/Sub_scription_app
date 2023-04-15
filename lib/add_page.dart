@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:intl/intl.dart';
-import 'package:sub_scription_app/main.dart';
-
 import 'common.dart';
 
 class AddPage extends StatefulWidget {
