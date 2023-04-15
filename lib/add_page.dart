@@ -4,10 +4,10 @@ import 'common.dart';
 
 class AddPage extends StatefulWidget {
   const AddPage({super.key});
-
   @override
   State<AddPage> createState() => _AddPageState();
 }
+
 
 class _AddPageState extends State<AddPage> {
   int _selectedOption = 1;
@@ -33,7 +33,7 @@ class _AddPageState extends State<AddPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('プランを追加する'),
+        title: const Text('サブスクを追加する'),
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.check))],
       ),
       body: Column(
