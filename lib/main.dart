@@ -2,8 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sub_scription_app/ui/auth/login_page.dart';
-import 'package:sub_scription_app/ui/mana/add_page.dart';
+
 import 'package:sub_scription_app/firebase_options.dart';
+import 'package:sub_scription_app/ui/mana/add_page.dart';
 
 import 'common.dart';
 
