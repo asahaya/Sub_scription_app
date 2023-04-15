@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sub_scription_app/add_page.dart';
+import 'package:sub_scription_app/login_page.dart';
 
 import 'common.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const FirstPage(),
+      home: const LoginPage(),
     );
   }
 }
