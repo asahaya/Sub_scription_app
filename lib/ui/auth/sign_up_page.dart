@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:sub_scription_app/main.dart';
 import 'package:sub_scription_app/ui/auth/button_freame.dart';
-import 'package:sub_scription_app/ui/auth/sign_up_page.dart';
 
-class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatelessWidget {
+  const SignUpPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -45,39 +43,11 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-            // ButtonFlame(
-            //   label: "LOGIN",
-            //   colors: Colors.blue,
-            //   onPressed: () {
-            //     print('login');
-            //   },
-            // ),
-
             ButtonFlame(
-                label: "LOGIN",
-                colors: Colors.blue,
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const FirstPage()));
-                          print('login');
-                }),
-            ButtonFlame(
-                label: "REGISTER",
-                colors: Colors.red,
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const FirstPage()));
-                }),
-                ElevatedButton(onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const FirstPage()));
-                }, child: const Text('test')),
+              label: "REGISTER",
+              colors: Colors.red,
+              onPressed: () {},
+            ),
           ],
         ),
       ),
