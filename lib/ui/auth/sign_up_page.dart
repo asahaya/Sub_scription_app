@@ -29,6 +29,7 @@ class SignUpPage extends StatelessWidget {
                 "https://www.chargebee.com/blog/wp-content/uploads/2022/07/Chargebee-Subscription-Box-Industry-trends-opportunities-and-Market-Size.png"),
             Text("REGISTER"),
             TextFormField(
+              controller: pf_name,
               decoration: InputDecoration(
                 hintText: '名前を入力してください',
                 fillColor: Colors.orange[100],
@@ -42,6 +43,7 @@ class SignUpPage extends StatelessWidget {
               ),
             ),
             TextFormField(
+              controller: email,
               decoration: InputDecoration(
                 hintText: 'メールアドレスを入力してください',
                 fillColor: Colors.orange[100],
@@ -55,6 +57,7 @@ class SignUpPage extends StatelessWidget {
               ),
             ),
             TextFormField(
+              controller: password,
               obscureText: true,
               decoration: InputDecoration(
                 hintText: 'パスワードを入力してください',
