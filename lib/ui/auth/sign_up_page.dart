@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:sub_scription_app/main.dart';
-import 'package:sub_scription_app/service/sign_in_service.dart';
 import 'package:sub_scription_app/service/platform_service.dart';
 import 'package:sub_scription_app/service/sign_up_service.dart';
 import 'package:sub_scription_app/ui/auth/button_freame.dart';

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:sub_scription_app/main.dart';
 import 'package:sub_scription_app/service/sign_in_service.dart';
 import 'package:sub_scription_app/ui/auth/button_freame.dart';
@@ -76,7 +75,10 @@ class LoginPage extends StatelessWidget {
               label: "REGISTER",
               colors: Colors.red,
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpPage()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const SignUpPage()));
               },
             ),
           ],

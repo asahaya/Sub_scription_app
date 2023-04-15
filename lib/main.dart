@@ -65,8 +65,64 @@ class _FirstPageState extends State<FirstPage> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Text('2023年4月'),
-                    Text('¥10500'),
+                    Expanded(
+                        flex: 1,
+                        child: InkWell(
+                          child: Icon(Icons.arrow_left),
+                          onTap: () {},
+                        )),
+                    Expanded(
+                      flex: 8,
+                      child: Center(
+                        child: RichText(
+                          text: TextSpan(
+                            text: '2023',
+                            style: TextStyle(fontSize: 20, color: Colors.black),
+                            children: const <TextSpan>[
+                              TextSpan(
+                                text: '年',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(
+                                text: '4',
+                                style: TextStyle(
+                                    fontSize: 30, fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(
+                                text: '月',
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(
+                                text: 'の支払い',
+                                style: TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(
+                                text: '¥',
+                                style: TextStyle(
+                                    fontSize: 30, fontWeight: FontWeight.bold),
+                              ),
+                              TextSpan(
+                                text: '10900',
+                                style: TextStyle(
+                                    fontSize: 40, fontWeight: FontWeight.bold),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Expanded(
+                        flex: 1,
+                        child: InkWell(
+                          child: Icon(Icons.arrow_right),
+                          onTap: () {},
+                        )),
                   ],
                 ),
               ),
@@ -79,17 +135,58 @@ class _FirstPageState extends State<FirstPage> {
                   return Column(
                     children: [
                       SizedBox(
-                        height: 50,
-                        child: Row(
-                          children: [
-                            Expanded(child: Image.network(img)),
-                            Expanded(
-                              child: Text('Flutter大学'),
-                            ),
-                            Expanded(
-                              child: Text('¥5,550'),
-                            ),
-                          ],
+                        height: 100,
+                        child: Container(
+                          alignment: Alignment.center,
+                          margin: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                              gradient: const LinearGradient(
+                                  begin: Alignment.topRight,
+                                  end: Alignment.bottomLeft,
+                                  colors: [
+                                    Colors.amberAccent,
+                                    Colors.deepOrange,
+                                  ]),
+                              boxShadow: const [
+                                BoxShadow(
+                                    color: Colors.grey,
+                                    spreadRadius: 1,
+                                    blurRadius: 10,
+                                    offset: Offset(4, 4))
+                              ]),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Expanded(flex: 1, child: Image.network(img)),
+                              SizedBox(width: 20),
+                              Expanded(
+                                flex: 5,
+                                child: Text(
+                                  'Flutter大学',
+                                  style: TextStyle(fontSize: 20),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 3,
+                                child: RichText(
+                                  text: TextSpan(
+                                    text: '¥',
+                                    style: TextStyle(
+                                        fontSize: 30, color: Colors.black),
+                                    children: const <TextSpan>[
+                                      TextSpan(
+                                          text: '5500',
+                                          style: TextStyle(
+                                              fontSize: 40,
+                                              fontWeight: FontWeight.bold)),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Icon(Icons.alarm)
+                            ],
+                          ),
                         ),
                       ),
                     ],
