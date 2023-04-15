@@ -1,11 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:sub_scription_app/login_page.dart';
-import 'package:sub_scription_app/main.dart';
+import 'package:sub_scription_app/ui/auth/login_page.dart';
 
-import 'common.dart';
+import '../../common.dart';
 
 class AddPage extends StatefulWidget {
   const AddPage({super.key});
@@ -28,16 +25,19 @@ class _AddPageState extends State<AddPage> {
           Row(
             children: [
               // 一旦ログアウトボタンを配置
-              IconButton(
-                  onPressed: () async {
-                    await auth.signOut();
-                    if(context.mounted) {
-                    Navigator.pushAndRemoveUntil(
-                        context, MaterialPageRoute(builder: (context) => LoginPage()), (route) => false);
-                    }
-                  },
-                  icon: Icon(Icons.logout)),
-              IconButton(onPressed: () {}, icon: Icon(Icons.check)),
+              // IconButton(
+              //     onPressed: () async {
+              //       await auth.signOut();
+              //       if (context.mounted) {
+              //         Navigator.pushAndRemoveUntil(
+              //             context,
+              //             MaterialPageRoute(
+              //                 builder: (context) => const LoginPage()),
+              //             (route) => false);
+              //       }
+              //     },
+              //     icon: const Icon(Icons.logout)),
+              IconButton(onPressed: () {}, icon: const Icon(Icons.check)),
             ],
           )
         ],

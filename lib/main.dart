@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:sub_scription_app/add_page.dart';
+import 'package:sub_scription_app/ui/auth/login_page.dart';
+import 'package:sub_scription_app/ui/mana/add_page.dart';
 import 'package:sub_scription_app/firebase_options.dart';
-import 'package:sub_scription_app/login_page.dart';
 
 import 'common.dart';
 
@@ -27,19 +27,19 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: StreamBuilder<User?>(
-          stream: FirebaseAuth.instance.authStateChanges(),
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              return const SizedBox();
-            }
-            if (snapshot.hasData) {
-              // ログインしていたら、FirstPageへ
-              return const FirstPage();
-            }
-            // ログインしていなければ、LoginPageへ
-            return const LoginPage();
-          },
-        ),
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const SizedBox();
+          }
+          if (snapshot.hasData) {
+            // ログインしていたら、FirstPageへ
+            return const FirstPage();
+          }
+          // ログインしていなければ、LoginPageへ
+          return const LoginPage();
+        },
+      ),
     );
   }
 }
@@ -53,7 +53,6 @@ class FirstPage extends StatefulWidget {
 
 class _FirstPageState extends State<FirstPage> {
   @override
-
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -101,13 +100,14 @@ class _FirstPageState extends State<FirstPage> {
           ],
         ),
         floatingActionButton: FloatingActionButton(
-          child:const Text('add'),
-          onPressed: (){
-            Navigator.push(context, MaterialPageRoute(
-              builder: (context) => AddPage()
-            ),);
-
-          },),
+          child: const Text('add'),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => AddPage()),
+            );
+          },
+        ),
       ),
     );
   }
