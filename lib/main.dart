@@ -4,9 +4,13 @@ import 'package:sub_scription_app/add_page.dart';
 import 'common.dart';
 
 
- 
-void main() {
-  runApp(const MyApp());
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -34,7 +38,7 @@ class FirstPage extends StatefulWidget {
 
 class _FirstPageState extends State<FirstPage> {
   @override
- 
+
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -87,7 +91,7 @@ class _FirstPageState extends State<FirstPage> {
             Navigator.push(context, MaterialPageRoute(
               builder: (context) => AddPage()
             ),);
-         
+
           },),
       ),
     );
