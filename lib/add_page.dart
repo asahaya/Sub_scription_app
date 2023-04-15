@@ -22,7 +22,9 @@ class _AddPageState extends State<AddPage> {
     });
   }
 
-  String? isSelection = 'Movie';
+  String? isGenreSelection = '---genre_choice---';
+  String? isPFSelection = '---platform_choice---';
+  String? isPlanSelection = '---plan_choice---';
 
   TextEditingController _datacontroller = TextEditingController();
   DateTime? _selectedDate;
@@ -37,8 +39,14 @@ class _AddPageState extends State<AddPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('プランを追加する'),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.check))],
+        title: const Text('サブスクを追加する'),
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: Icon(Icons.check))
+        ],
       ),
       body: Column(
         children: [
@@ -46,37 +54,80 @@ class _AddPageState extends State<AddPage> {
             children: [
               Expanded(child: Image.network(img)),
               Expanded(
+                flex: 2,
                 child: Column(
                   children: [
-                    DropdownButton(
-                      items: const [
-                        DropdownMenuItem(
-                          child: Text('Movie'),
-                          value: 'Movie',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('Audio'),
-                          value: 'Audio',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('Skill'),
-                          value: 'Skill',
-                        ),
-                        DropdownMenuItem(
-                          child: Text('other'),
-                          value: 'other',
-                        ),
-                      ],
-                      onChanged: (String? value) {
-                        setState(() {
-                          isSelection = value;
-                        });
-                      },
-                      value: isSelection,
+                    Container(
+                      width: double.infinity,
+                      child: DropdownButton(
+                        items: const [
+                          DropdownMenuItem(
+                            child: Text('---genre_choice---'),
+                            value: '---genre_choice---',
+                          ),
+                          DropdownMenuItem(
+                            child: Text('Audio'),
+                            value: 'Audio',
+                          ),
+                          DropdownMenuItem(
+                            child: Text('Skill'),
+                            value: 'Skill',
+                          ),
+                          DropdownMenuItem(
+                            child: Text('other'),
+                            value: 'other',
+                          ),
+                        ],
+                        onChanged: (String? value) {
+                          setState(() {
+                            isGenreSelection = value;
+                          });
+                        },
+                        value: isGenreSelection,
+                      ),
                     ),
-                    Text("ここにプラットフォーム選択"),
-                    SizedBox(height: 10),
-                    Text("ここにプラン選択"),
+                    Container(
+                      width: double.infinity,
+                      child: DropdownButton(
+                        items: const [
+                          DropdownMenuItem(
+                            child: Text('---platform_choice---'),
+                            value: '---platform_choice---',
+                          ),
+                          DropdownMenuItem(
+                            child: Text('NetFlix'),
+                            value: 'NetFlix',
+                          ),
+                        ],
+                        onChanged: (String? value) {
+                          setState(() {
+                            isPFSelection = value;
+                          });
+                        },
+                        value: isPFSelection,
+                      ),
+                    ),
+                    Container(
+                      width: double.infinity,
+                      child: DropdownButton(
+                        items: const [
+                          DropdownMenuItem(
+                            child: Text('---plan_choice---'),
+                            value: '---plan_choice---',
+                          ),
+                          DropdownMenuItem(
+                            child: Text('AD_BASIC'),
+                            value: 'AD_BASIC',
+                          ),
+                        ],
+                        onChanged: (String? value) {
+                          setState(() {
+                            isPlanSelection = value;
+                          });
+                        },
+                        value: isPlanSelection,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -87,27 +138,29 @@ class _AddPageState extends State<AddPage> {
               TitleFlame(title: '開始日'),
               Expanded(
                 child: GestureDetector(
-                  onTap: () async {
-                    _selectedDate = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(1900),
-                      lastDate: DateTime(2100),
-                    );
-                    if (_selectedDate != null) {
-                      setState(() {
-                        _datacontroller.text =
-                            DateFormat('yyyy/MM/dd').format(_selectedDate!);
-                      });
-                    }
-                  },
                   child: TextFormField(
                     textAlign: TextAlign.center,
                     controller: _datacontroller,
+                    keyboardType: TextInputType.number,
                     decoration: InputDecoration(
-                      labelText: 'Date',
+                      
+                      labelText: ' 加入日を選択',
                       suffixIcon: Icon(Icons.calendar_today),
                     ),
+                    onTap: () async {
+                      _selectedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1900),
+                        lastDate: DateTime(2100),
+                      );
+                      if (_selectedDate != null) {
+                        setState(() {
+                          _datacontroller.text =
+                              DateFormat('yyyy/MM/dd').format(_selectedDate!);
+                        });
+                      }
+                    },
                   ),
                 ),
               ),
@@ -144,7 +197,7 @@ class _AddPageState extends State<AddPage> {
                   keyboardType: TextInputType.number,
                   decoration: InputDecoration(
                     hintText: _selectedOption == 1 ? '月額の価格' : '年額の価格',
-                    fillColor: Colors.orange[100],
+                    fillColor: Colors.grey[200],
                     filled: true,
                     isDense: true,
                     prefixIcon: const Icon(Icons.price_change),
