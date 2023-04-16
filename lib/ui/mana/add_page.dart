@@ -1,6 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:sub_scription_app/service/platform_upload.dart';
+import 'package:sub_scription_app/ui/auth/button_freame.dart';
+import 'package:sub_scription_app/ui/auth/login_page.dart';
 import '../../common.dart';
 
 class AddPage extends StatefulWidget {
@@ -30,27 +34,37 @@ class _AddPageState extends State<AddPage> {
   String? isSelection = 'Movie';
 
   TextEditingController _datacontroller = TextEditingController();
+  TextEditingController pf_name = TextEditingController();
+  TextEditingController name = TextEditingController();
   TextEditingController price = TextEditingController();
   DateTime? _selectedDate;
 
   @override
   void dispose() {
     _datacontroller.dispose();
+    pf_name.dispose();
+    name.dispose();
+    price.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     final platformUpload = PlatformUpload();
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('プランを追加する'),
         actions: [
           IconButton(
               onPressed: () async {
-                platformUpload.addPlatFormData(_selectedDate!, price.text,
-                    isSelection!, _startSelectedOption, _paceSelectedOption);
+                platformUpload.addPlatFormData(
+                    _selectedDate!,
+                    name.text,
+                    pf_name.text,
+                    price.text,
+                    isSelection!,
+                    _startSelectedOption,
+                    _paceSelectedOption);
               },
               icon: Icon(Icons.check))
         ],
@@ -63,7 +77,7 @@ class _AddPageState extends State<AddPage> {
                 Expanded(
                     child: GestureDetector(
                         onTap: () async {
-                          platformUpload.platFormUpload();
+                          platformUpload.imageUpload();
                         },
                         child: Image.network(img))),
                 Expanded(
@@ -95,9 +109,15 @@ class _AddPageState extends State<AddPage> {
                         },
                         value: isSelection,
                       ),
-                      Text("ここにプラットフォーム選択"),
+                      TextField(
+                        controller: pf_name,
+                        decoration: InputDecoration(hintText: "プラットフォーム選択"),
+                      ),
                       SizedBox(height: 10),
-                      Text("ここにプラン選択"),
+                      TextField(
+                        controller: name,
+                        decoration: InputDecoration(hintText: "プラン選択"),
+                      ),
                     ],
                   ),
                 ),
@@ -183,7 +203,6 @@ class _AddPageState extends State<AddPage> {
                 TitleFlame(title: '価格'),
                 Expanded(
                   child: TextFormField(
-                    controller: price,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: _paceSelectedOption == 1 ? '月額の価格' : '年額の価格',
@@ -200,6 +219,20 @@ class _AddPageState extends State<AddPage> {
                 ),
               ],
             ),
+            SizedBox(height: 50),
+            ButtonFlame(
+                label: 'Logout',
+                colors: Colors.red,
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                  if (context.mounted) {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage()),
+                        (route) => false);
+                  }
+                }),
           ],
         ),
       ),

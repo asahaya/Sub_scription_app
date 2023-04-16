@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sub_scription_app/ui/auth/login_page.dart';
 
 import 'package:sub_scription_app/firebase_options.dart';
+
 import 'package:sub_scription_app/ui/mana/add_page.dart';
 
 import 'common.dart';
@@ -203,7 +204,7 @@ class _FirstPageState extends State<FirstPage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const AddPage()),
+              MaterialPageRoute(builder: (context) => AddPage()),
             );
           },
         ),

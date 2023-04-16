@@ -32,7 +32,7 @@
 //   Widget build(BuildContext context) {
 //     return Scaffold(
 //       appBar: AppBar(
-//         title: const Text('プランを追加する'),
+//         title: const Text('サブスクを追加する'),
 //         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.check))],
 //       ),
 //       body: Column(
@@ -69,9 +69,9 @@
 //                       },
 //                       value: isSelection,
 //                     ),
-//                     Text("ここにプラットフォーム選択"),
+//                     // Text("ここにプラットフォーム選択"),
 //                     SizedBox(height: 10),
-//                     Text("ここにプラン選択"),
+//                     // Text("ここにプラン選択"),
 //                   ],
 //                 ),
 //               ),
