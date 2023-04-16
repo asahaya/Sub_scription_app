@@ -2,9 +2,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:sub_scription_app/ui/auth/login_page.dart';
-import 'package:sub_scription_app/ui/mana/add_page.dart';
+
 import 'package:sub_scription_app/firebase_options.dart';
-// 4/16
+import 'package:sub_scription_app/ui/mana/add_page.dart';
+
 import 'common.dart';
 
 void main() async {
@@ -138,7 +139,8 @@ class _FirstPageState extends State<FirstPage> {
                         height: 100,
                         child: Container(
                           alignment: Alignment.center,
-                          margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 7),
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 10, vertical: 7),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               gradient: const LinearGradient(
@@ -201,7 +203,7 @@ class _FirstPageState extends State<FirstPage> {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => AddPage()),
+              MaterialPageRoute(builder: (context) => const AddPage()),
             );
           },
         ),
