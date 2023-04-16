@@ -4,8 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:sub_scription_app/ui/auth/login_page.dart';
 
 import 'package:sub_scription_app/firebase_options.dart';
+<<<<<<< HEAD
 import 'package:sub_scription_app/ui/mana/add_page.dart';
 
+=======
+// 4/16
+>>>>>>> refs/remotes/origin/main
 import 'common.dart';
 
 void main() async {
@@ -83,7 +87,7 @@ class _FirstPageState extends State<FirstPage> {
                               TextSpan(
                                 text: '年',
                                 style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
+                                    fontSize: 10, fontWeight: FontWeight.bold),
                               ),
                               TextSpan(
                                 text: '4',
@@ -96,7 +100,7 @@ class _FirstPageState extends State<FirstPage> {
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
                               TextSpan(
-                                text: 'の支払い',
+                                text: 'の支払い   ',
                                 style: TextStyle(
                                     fontSize: 15, fontWeight: FontWeight.bold),
                               ),
@@ -139,7 +143,7 @@ class _FirstPageState extends State<FirstPage> {
                         height: 100,
                         child: Container(
                           alignment: Alignment.center,
-                          margin: const EdgeInsets.all(10),
+                          margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 7),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               gradient: const LinearGradient(
@@ -159,8 +163,8 @@ class _FirstPageState extends State<FirstPage> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Expanded(flex: 1, child: Image.network(img)),
-                              SizedBox(width: 20),
+                              Expanded(flex: 2, child: Image.network(img)),
+                              SizedBox(width: 10),
                               Expanded(
                                 flex: 5,
                                 child: Text(
@@ -179,7 +183,7 @@ class _FirstPageState extends State<FirstPage> {
                                       TextSpan(
                                           text: '5500',
                                           style: TextStyle(
-                                              fontSize: 40,
+                                              fontSize: 35,
                                               fontWeight: FontWeight.bold)),
                                     ],
                                   ),
