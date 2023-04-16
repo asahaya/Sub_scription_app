@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -58,80 +59,81 @@ class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     // final List<String> data=["Flutter大学","U-NEXT",""];
+    final Stream<QuerySnapshot> _platformStream =
+        FirebaseFirestore.instance.collection('platform').snapshots();
 
     return SafeArea(
       child: Scaffold(
         body: Column(
           children: [
-            Expanded(
-              flex: 1,
-              child: Container(
-                decoration: BoxDecoration(color: Colors.amber),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Expanded(
-                        flex: 1,
-                        child: InkWell(
-                          child: Icon(Icons.arrow_left),
-                          onTap: () {},
-                        )),
-                    Expanded(
-                      flex: 8,
-                      child: Center(
-                        child: RichText(
-                          text: TextSpan(
-                            text: '2023',
-                            style: TextStyle(fontSize: 20, color: Colors.black),
-                            children: const <TextSpan>[
-                              TextSpan(
-                                text: '年',
-                                style: TextStyle(
-                                    fontSize: 10, fontWeight: FontWeight.bold),
-                              ),
-                              TextSpan(
-                                text: '4',
-                                style: TextStyle(
-                                    fontSize: 30, fontWeight: FontWeight.bold),
-                              ),
-                              TextSpan(
-                                text: '月',
-                                style: TextStyle(
-                                    fontSize: 20, fontWeight: FontWeight.bold),
-                              ),
-                              TextSpan(
-                                text: 'の支払い   ',
-                                style: TextStyle(
-                                    fontSize: 15, fontWeight: FontWeight.bold),
-                              ),
-                              TextSpan(
-                                text: '¥',
-                                style: TextStyle(
-                                    fontSize: 30, fontWeight: FontWeight.bold),
-                              ),
-                              TextSpan(
-                                text: '10900',
-                                style: TextStyle(
-                                    fontSize: 40, fontWeight: FontWeight.bold),
-                              ),
-                            ],
-                          ),
+            Container(
+              height: 100,
+              decoration: BoxDecoration(color: Colors.amber),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Expanded(
+                      flex: 1,
+                      child: InkWell(
+                        child: Icon(Icons.arrow_left),
+                        onTap: () {},
+                      )),
+                  Expanded(
+                    flex: 8,
+                    child: Center(
+                      child: RichText(
+                        text: TextSpan(
+                          text: '2023',
+                          style: TextStyle(fontSize: 20, color: Colors.black),
+                          children: const <TextSpan>[
+                            TextSpan(
+                              text: '年',
+                              style: TextStyle(
+                                  fontSize: 10, fontWeight: FontWeight.bold),
+                            ),
+                            TextSpan(
+                              text: '4',
+                              style: TextStyle(
+                                  fontSize: 30, fontWeight: FontWeight.bold),
+                            ),
+                            TextSpan(
+                              text: '月',
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.bold),
+                            ),
+                            TextSpan(
+                              text: 'の支払い   ',
+                              style: TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
+                            ),
+                            TextSpan(
+                              text: '¥',
+                              style: TextStyle(
+                                  fontSize: 30, fontWeight: FontWeight.bold),
+                            ),
+                            TextSpan(
+                              text: '10900',
+                              style: TextStyle(
+                                  fontSize: 40, fontWeight: FontWeight.bold),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    SizedBox(
-                      width: 10,
-                    ),
-                    Expanded(
-                        flex: 1,
-                        child: InkWell(
-                          child: Icon(Icons.arrow_right),
-                          onTap: () {},
-                        )),
-                  ],
-                ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Expanded(
+                      flex: 1,
+                      child: InkWell(
+                        child: Icon(Icons.arrow_right),
+                        onTap: () {},
+                      )),
+                ],
               ),
             ),
+            // Stream
             Expanded(
               flex: 10,
               child: ListView.builder(
