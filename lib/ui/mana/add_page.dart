@@ -203,6 +203,7 @@ class _AddPageState extends State<AddPage> {
                 TitleFlame(title: '価格'),
                 Expanded(
                   child: TextFormField(
+                    controller: price,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: _paceSelectedOption == 1 ? '月額の価格' : '年額の価格',
