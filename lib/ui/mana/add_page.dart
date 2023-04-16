@@ -29,11 +29,15 @@ class _AddPageState extends State<AddPage> {
   String? isSelection = 'Movie';
 
   TextEditingController _datacontroller = TextEditingController();
+  TextEditingController _pfcontroller = TextEditingController();
+  TextEditingController _plancontroller = TextEditingController();
   DateTime? _selectedDate;
 
   @override
   void dispose() {
     _datacontroller.dispose();
+    _pfcontroller.dispose();
+    _plancontroller.dispose();
     super.dispose();
   }
 
@@ -41,7 +45,8 @@ class _AddPageState extends State<AddPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('プランを追加する'),
+        title: const Text('新しくサブスクを追加する'),
+        backgroundColor: Colors.orange,
         actions: [IconButton(onPressed: () {}, icon: Icon(Icons.check))],
       ),
       body: SingleChildScrollView(
@@ -49,8 +54,16 @@ class _AddPageState extends State<AddPage> {
           children: [
             Row(
               children: [
-                Expanded(child: Image.network(img)),
                 Expanded(
+                    flex: 2,
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(50),
+                          child: Image.network(img)),
+                    )),
+                Expanded(
+                  flex: 3,
                   child: Column(
                     children: [
                       DropdownButton(
@@ -79,9 +92,31 @@ class _AddPageState extends State<AddPage> {
                         },
                         value: isSelection,
                       ),
-                      Text("ここにプラットフォーム選択"),
+                      TextFormField(
+                        controller: _pfcontroller,
+                        decoration: InputDecoration(
+                          hintText: 'プラットフォームを入力',
+                          fillColor: Colors.blue[100],
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(32),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
                       SizedBox(height: 10),
-                      Text("ここにプラン選択"),
+                      TextFormField(
+                        controller: _plancontroller,
+                        decoration: InputDecoration(
+                          hintText: 'プラン名を入力',
+                          fillColor: Colors.blue[100],
+                          filled: true,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(32),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -94,27 +129,29 @@ class _AddPageState extends State<AddPage> {
                   child: TextFormField(
                     textAlign: TextAlign.center,
                     controller: _datacontroller,
+                    autofocus: false,
                     decoration: InputDecoration(
                       labelText: 'Date',
                       suffixIcon: Icon(Icons.calendar_today),
                     ),
                     onTap: () async {
-                    _selectedDate = await showDatePicker(
-                      context: context,
-                      initialDate: DateTime.now(),
-                      firstDate: DateTime(1900),
-                      lastDate: DateTime(2100),
-                    );
-                    if (_selectedDate != null) {
-                      setState(() {
-                        _datacontroller.text =
-                            DateFormat('yyyy/MM/dd').format(_selectedDate!);
-                      });
-                    }
-                  },
+                      _selectedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1900),
+                        lastDate: DateTime(2100),
+                      );
+                      if (_selectedDate != null) {
+                        setState(() {
+                          _datacontroller.text =
+                              DateFormat('yyyy/MM/dd').format(_selectedDate!);
+                        });
+                      }
+                      FocusScope.of(context).requestFocus(new FocusNode());
+                    },
                   ),
                 ),
-      
+
                 ///
               ],
             ),
@@ -139,7 +176,7 @@ class _AddPageState extends State<AddPage> {
                 ),
               ],
             ),
-          //---
+            //---
             Row(
               children: [
                 TitleFlame(title: '支払い開始日'),
@@ -161,7 +198,7 @@ class _AddPageState extends State<AddPage> {
                 ),
               ],
             ),
-      
+
             Row(
               children: [
                 TitleFlame(title: '価格'),

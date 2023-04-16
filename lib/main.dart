@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:sub_scription_app/ui/auth/login_page.dart';
 
 import 'package:sub_scription_app/firebase_options.dart';
@@ -56,6 +57,8 @@ class FirstPage extends StatefulWidget {
 class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
+    // final List<String> data=["Flutter大学","U-NEXT",""];
+
     return SafeArea(
       child: Scaffold(
         body: Column(
@@ -132,66 +135,113 @@ class _FirstPageState extends State<FirstPage> {
             Expanded(
               flex: 10,
               child: ListView.builder(
-                itemCount: 24,
+                itemCount: 10,
                 itemBuilder: (context, index) {
-                  return Column(
-                    children: [
-                      SizedBox(
-                        height: 100,
-                        child: Container(
-                          alignment: Alignment.center,
-                          margin: const EdgeInsets.symmetric(horizontal: 10,vertical: 7),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              gradient: const LinearGradient(
-                                  begin: Alignment.topRight,
-                                  end: Alignment.bottomLeft,
-                                  colors: [
-                                    Colors.amberAccent,
-                                    Colors.deepOrange,
-                                  ]),
-                              boxShadow: const [
-                                BoxShadow(
-                                    color: Colors.grey,
-                                    spreadRadius: 1,
-                                    blurRadius: 10,
-                                    offset: Offset(4, 4))
-                              ]),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Expanded(flex: 2, child: Image.network(img)),
-                              SizedBox(width: 10),
-                              Expanded(
-                                flex: 5,
-                                child: Text(
-                                  'Flutter大学',
-                                  style: TextStyle(fontSize: 20),
-                                ),
-                              ),
-                              Expanded(
-                                flex: 3,
-                                child: RichText(
-                                  text: TextSpan(
-                                    text: '¥',
-                                    style: TextStyle(
-                                        fontSize: 30, color: Colors.black),
-                                    children: const <TextSpan>[
-                                      TextSpan(
-                                          text: '5500',
-                                          style: TextStyle(
-                                              fontSize: 35,
-                                              fontWeight: FontWeight.bold)),
+                  return Slidable(
+                    key: ValueKey(0),
+                    endActionPane:
+                        ActionPane(motion: ScrollMotion(), children: [
+                      SlidableAction(
+                        // An action can be bigger than the others.
+
+                        onPressed: null,
+                        backgroundColor: Colors.green,
+                        foregroundColor: Colors.white,
+                        icon: Icons.edit,
+                        label: 'Edit',
+                      ),
+                      SlidableAction(
+                        onPressed: null,
+                        backgroundColor: Colors.red,
+                        foregroundColor: Colors.white,
+                        icon: Icons.delete,
+                        label: 'Delete',
+                      ),
+                    ]),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 100,
+                          child: Container(
+                            alignment: Alignment.center,
+                            margin: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 7),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                gradient: const LinearGradient(
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft,
+                                    colors: [
+                                      Colors.amberAccent,
+                                      Colors.deepOrange,
+                                    ]),
+                                boxShadow: const [
+                                  BoxShadow(
+                                      color: Colors.grey,
+                                      spreadRadius: 1,
+                                      blurRadius: 10,
+                                      offset: Offset(4, 4))
+                                ]),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                SizedBox(width: 10),
+                                Expanded(
+                                    flex: 2,
+                                    child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(20),
+                                        child: Image.network(
+                                          img,
+                                          errorBuilder:
+                                              (context, error, stackTrace) {
+                                            return const Icon(
+                                              Icons.error,
+                                              color: Colors.red,
+                                            );
+                                          },
+                                        ))),
+                                SizedBox(width: 10),
+                                Expanded(
+                                  flex: 5,
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Text(
+                                        'NetFlix',
+                                        style: TextStyle(fontSize: 20),
+                                      ),
+                                      Text(
+                                        'Basic Plan',
+                                        style: TextStyle(fontSize: 15),
+                                      ),
                                     ],
                                   ),
                                 ),
-                              ),
-                              Icon(Icons.alarm)
-                            ],
+                                Expanded(
+                                  flex: 3,
+                                  child: RichText(
+                                    text: TextSpan(
+                                      text: '¥',
+                                      style: TextStyle(
+                                          fontSize: 30, color: Colors.black),
+                                      children: const <TextSpan>[
+                                        TextSpan(
+                                            text: '990',
+                                            style: TextStyle(
+                                                fontSize: 35,
+                                                fontWeight: FontWeight.bold)),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Icon(Icons.alarm)
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   );
                 },
               ),
@@ -200,6 +250,9 @@ class _FirstPageState extends State<FirstPage> {
         ),
         floatingActionButton: FloatingActionButton(
           child: const Text('add'),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+          ),
           onPressed: () {
             Navigator.push(
               context,
