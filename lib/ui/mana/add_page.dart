@@ -18,6 +18,8 @@ class _AddPageState extends State<AddPage> {
       _paceSelectedOption = value ?? 1;
     });
   }
+  //Asnhyt10ap
+
   void _startHandleRadioValueChange(int? value) {
     setState(() {
       _startSelectedOption = value ?? 1;
@@ -139,6 +141,7 @@ class _AddPageState extends State<AddPage> {
                 ),
               ],
             ),
+          //---
             Row(
               children: [
                 TitleFlame(title: '支払い開始日'),
