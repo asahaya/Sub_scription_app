@@ -1,34 +1,33 @@
 // import 'package:flutter/material.dart';
 // import 'package:intl/intl.dart';
 // import 'common.dart';
-
+//
 // class AddPage extends StatefulWidget {
 //   const AddPage({super.key});
 //   @override
 //   State<AddPage> createState() => _AddPageState();
 // }
-
-
+//
 // class _AddPageState extends State<AddPage> {
 //   int _selectedOption = 1;
-
+//
 //   void _handleRadioValueChange(int? value) {
 //     setState(() {
 //       _selectedOption = value ?? 1;
 //     });
 //   }
-
+//
 //   String? isSelection = 'Movie';
-
+//
 //   TextEditingController _datacontroller = TextEditingController();
 //   DateTime? _selectedDate;
-
+//
 //   @override
 //   void dispose() {
 //     _datacontroller.dispose();
 //     super.dispose();
 //   }
-
+//
 //   @override
 //   Widget build(BuildContext context) {
 //     return Scaffold(
@@ -70,9 +69,9 @@
 //                       },
 //                       value: isSelection,
 //                     ),
-//                     Text("ここにプラットフォーム選択"),
+//                     // Text("ここにプラットフォーム選択"),
 //                     SizedBox(height: 10),
-//                     Text("ここにプラン選択"),
+//                     // Text("ここにプラン選択"),
 //                   ],
 //                 ),
 //               ),
@@ -107,7 +106,7 @@
 //                   ),
 //                 ),
 //               ),
-
+//
 //               ///
 //             ],
 //           ),
@@ -158,11 +157,11 @@
 //     );
 //   }
 // }
-
+//
 // class TitleFlame extends StatelessWidget {
 //   const TitleFlame({required this.title, super.key});
 //   final String title;
-
+//
 //   @override
 //   Widget build(BuildContext context) {
 //     return Container(

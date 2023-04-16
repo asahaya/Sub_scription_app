@@ -161,85 +161,124 @@ class _FirstPageState extends State<FirstPage> {
                     child: Column(
                       children: [
                         SizedBox(
-                          height: 100,
-                          child: Container(
-                            alignment: Alignment.center,
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 10, vertical: 7),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(15),
-                                gradient: const LinearGradient(
-                                    begin: Alignment.topRight,
-                                    end: Alignment.bottomLeft,
-                                    colors: [
-                                      Colors.amberAccent,
-                                      Colors.deepOrange,
+                            height: 100,
+                            child: Container(
+                                alignment: Alignment.center,
+                                margin: const EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 7),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15),
+                                    gradient: const LinearGradient(
+                                        begin: Alignment.topRight,
+                                        end: Alignment.bottomLeft,
+                                        colors: [
+                                          Colors.amberAccent,
+                                          Colors.deepOrange,
+                                        ]),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                          color: Colors.grey,
+                                          spreadRadius: 1,
+                                          blurRadius: 10,
+                                          offset: Offset(4, 4))
                                     ]),
-                                boxShadow: const [
-                                  BoxShadow(
-                                      color: Colors.grey,
-                                      spreadRadius: 1,
-                                      blurRadius: 10,
-                                      offset: Offset(4, 4))
-                                ]),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                SizedBox(width: 10),
-                                Expanded(
-                                    flex: 2,
-                                    child: ClipRRect(
-                                        borderRadius: BorderRadius.circular(20),
-                                        child: Image.network(
-                                          img,
-                                          errorBuilder:
-                                              (context, error, stackTrace) {
-                                            return const Icon(
-                                              Icons.error,
-                                              color: Colors.red,
-                                            );
-                                          },
-                                        ))),
-                                SizedBox(width: 10),
-                                Expanded(
-                                  flex: 5,
-                                  child: Column(
+                                child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
                                     children: [
-                                      Text(
-                                        'NetFlix',
-                                        style: TextStyle(fontSize: 20),
+                                      SizedBox(width: 10),
+                                      Expanded(
+                                          flex: 2,
+                                          child: ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(20),
+                                              child: Image.network(
+                                                img,
+                                                errorBuilder: (context, error,
+                                                    stackTrace) {
+                                                  return const Icon(
+                                                    Icons.error,
+                                                    color: Colors.red,
+                                                  );
+                                                },
+                                              ))),
+                                      SizedBox(width: 10),
+                                      Expanded(
+                                        flex: 5,
+                                        child: Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Text(
+                                              'NetFlix',
+                                              style: TextStyle(fontSize: 20),
+                                            ),
+                                            Text(
+                                              'Basic Plan',
+                                              style: TextStyle(fontSize: 15),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                      Text(
-                                        'Basic Plan',
-                                        style: TextStyle(fontSize: 15),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Expanded(
-                                  flex: 3,
-                                  child: RichText(
-                                    text: TextSpan(
-                                      text: '¥',
-                                      style: TextStyle(
-                                          fontSize: 30, color: Colors.black),
-                                      children: const <TextSpan>[
-                                        TextSpan(
-                                            text: '990',
+//
+                                      // return Column(
+                                      //   children: [
+                                      //     SizedBox(
+                                      //       height: 100,
+                                      //       child: Container(
+                                      //         alignment: Alignment.center,
+                                      //         margin: const EdgeInsets.symmetric(
+                                      //             horizontal: 10, vertical: 7),
+                                      //         decoration: BoxDecoration(
+                                      //             borderRadius: BorderRadius.circular(15),
+                                      //             gradient: const LinearGradient(
+                                      //                 begin: Alignment.topRight,
+                                      //                 end: Alignment.bottomLeft,
+                                      //                 colors: [
+                                      //                   Colors.amberAccent,
+                                      //                   Colors.deepOrange,
+                                      //                 ]),
+                                      //             boxShadow: const [
+                                      //               BoxShadow(
+                                      //                   color: Colors.grey,
+                                      //                   spreadRadius: 1,
+                                      //                   blurRadius: 10,
+                                      //                   offset: Offset(4, 4))
+                                      //             ]),
+                                      //         child: Row(
+                                      //           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      //           children: [
+                                      //             Expanded(flex: 2, child: Image.network(img)),
+                                      //             SizedBox(width: 10),
+                                      //             Expanded(
+                                      //               flex: 5,
+                                      //               child: Text(
+                                      //                 'Flutter大学',
+                                      //                 style: TextStyle(fontSize: 20),
+                                      //               ),
+                                      //             ),
+
+                                      Expanded(
+                                        flex: 3,
+                                        child: RichText(
+                                          text: TextSpan(
+                                            text: '¥',
                                             style: TextStyle(
-                                                fontSize: 35,
-                                                fontWeight: FontWeight.bold)),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                                Icon(Icons.alarm)
-                              ],
-                            ),
-                          ),
-                        ),
+                                                fontSize: 30,
+                                                color: Colors.black),
+                                            children: const <TextSpan>[
+                                              TextSpan(
+                                                  text: '990',
+                                                  style: TextStyle(
+                                                      fontSize: 35,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      Icon(Icons.alarm)
+                                    ]))),
                       ],
                     ),
                   );

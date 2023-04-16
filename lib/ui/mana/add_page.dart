@@ -1,5 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:sub_scription_app/service/platform_upload.dart';
+import 'package:sub_scription_app/ui/auth/button_freame.dart';
+import 'package:sub_scription_app/ui/auth/login_page.dart';
 import '../../common.dart';
 
 class AddPage extends StatefulWidget {
@@ -29,39 +34,76 @@ class _AddPageState extends State<AddPage> {
   String? isSelection = 'Movie';
 
   TextEditingController _datacontroller = TextEditingController();
+
   TextEditingController _pfcontroller = TextEditingController();
   TextEditingController _plancontroller = TextEditingController();
+
+  TextEditingController pf_name = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController price = TextEditingController();
+
   DateTime? _selectedDate;
 
   @override
   void dispose() {
     _datacontroller.dispose();
+
     _pfcontroller.dispose();
     _plancontroller.dispose();
+
+    pf_name.dispose();
+    name.dispose();
+    price.dispose();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    final platformUpload = PlatformUpload();
     return Scaffold(
       appBar: AppBar(
+
         title: const Text('新しくサブスクを追加する'),
         backgroundColor: Colors.orange,
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.check))],
+       
+
+        actions: [
+          IconButton(
+              onPressed: () async {
+                platformUpload.addPlatFormData(
+                    _selectedDate!,
+                    name.text,
+                    pf_name.text,
+                    price.text,
+                    isSelection!,
+                    _startSelectedOption,
+                    _paceSelectedOption);
+              },
+              icon: Icon(Icons.check))
+        ],
+
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
             Row(
               children: [
+
                 Expanded(
-                    flex: 2,
-                    child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(50),
-                          child: Image.network(img)),
-                    )),
+                    child: GestureDetector(
+                        onTap: () async {
+                          platformUpload.imageUpload();
+                        },
+                        child: Image.network(img))),
+
+                // Expanded(
+                //     flex: 2,
+                //     child: Padding(
+                //       padding: const EdgeInsets.all(8.0),
+                //       child: ClipRRect(
+                //           borderRadius: BorderRadius.circular(50),
+                //           child: Image.network(img)),
+                //     )),
                 Expanded(
                   flex: 3,
                   child: Column(
@@ -92,8 +134,9 @@ class _AddPageState extends State<AddPage> {
                         },
                         value: isSelection,
                       ),
+
                       TextFormField(
-                        controller: _pfcontroller,
+                        controller: pf_name,
                         decoration: InputDecoration(
                           hintText: 'プラットフォームを入力',
                           fillColor: Colors.blue[100],
@@ -106,7 +149,7 @@ class _AddPageState extends State<AddPage> {
                       ),
                       SizedBox(height: 10),
                       TextFormField(
-                        controller: _plancontroller,
+                        controller: name,
                         decoration: InputDecoration(
                           hintText: 'プラン名を入力',
                           fillColor: Colors.blue[100],
@@ -117,6 +160,16 @@ class _AddPageState extends State<AddPage> {
                           ),
                         ),
                       ),
+                      // TextField(
+                      //   controller: pf_name,
+                      //   decoration: InputDecoration(hintText: "プラットフォーム選択"),
+                      // ),
+                      // SizedBox(height: 10),
+                      // TextField(
+                      //   controller: name,
+                      //   decoration: InputDecoration(hintText: "プラン選択"),
+
+                      // ),
                     ],
                   ),
                 ),
@@ -147,7 +200,9 @@ class _AddPageState extends State<AddPage> {
                               DateFormat('yyyy/MM/dd').format(_selectedDate!);
                         });
                       }
+
                       FocusScope.of(context).requestFocus(new FocusNode());
+
                     },
                   ),
                 ),
@@ -204,6 +259,7 @@ class _AddPageState extends State<AddPage> {
                 TitleFlame(title: '価格'),
                 Expanded(
                   child: TextFormField(
+                    controller: price,
                     keyboardType: TextInputType.number,
                     decoration: InputDecoration(
                       hintText: _paceSelectedOption == 1 ? '月額の価格' : '年額の価格',
@@ -220,6 +276,20 @@ class _AddPageState extends State<AddPage> {
                 ),
               ],
             ),
+            SizedBox(height: 50),
+            ButtonFlame(
+                label: 'Logout',
+                colors: Colors.red,
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut();
+                  if (context.mounted) {
+                    Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const LoginPage()),
+                        (route) => false);
+                  }
+                }),
           ],
         ),
       ),
