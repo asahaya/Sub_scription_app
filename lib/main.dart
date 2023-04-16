@@ -4,12 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:sub_scription_app/ui/auth/login_page.dart';
 
 import 'package:sub_scription_app/firebase_options.dart';
-<<<<<<< HEAD
+
 import 'package:sub_scription_app/ui/mana/add_page.dart';
 
-=======
-// 4/16
->>>>>>> refs/remotes/origin/main
 import 'common.dart';
 
 void main() async {

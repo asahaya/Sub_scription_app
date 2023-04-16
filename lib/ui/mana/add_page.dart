@@ -91,29 +91,27 @@ class _AddPageState extends State<AddPage> {
               children: [
                 TitleFlame(title: '開始日'),
                 Expanded(
-                  child: GestureDetector(
-                    onTap: () async {
-                      _selectedDate = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime(1900),
-                        lastDate: DateTime(2100),
-                      );
-                      if (_selectedDate != null) {
-                        setState(() {
-                          _datacontroller.text =
-                              DateFormat('yyyy/MM/dd').format(_selectedDate!);
-                        });
-                      }
-                    },
-                    child: TextFormField(
-                      textAlign: TextAlign.center,
-                      controller: _datacontroller,
-                      decoration: InputDecoration(
-                        labelText: 'Date',
-                        suffixIcon: Icon(Icons.calendar_today),
-                      ),
+                  child: TextFormField(
+                    textAlign: TextAlign.center,
+                    controller: _datacontroller,
+                    decoration: InputDecoration(
+                      labelText: 'Date',
+                      suffixIcon: Icon(Icons.calendar_today),
                     ),
+                    onTap: () async {
+                    _selectedDate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(1900),
+                      lastDate: DateTime(2100),
+                    );
+                    if (_selectedDate != null) {
+                      setState(() {
+                        _datacontroller.text =
+                            DateFormat('yyyy/MM/dd').format(_selectedDate!);
+                      });
+                    }
+                  },
                   ),
                 ),
       
